@@ -41,26 +41,42 @@ jobs:
             exit 1
           fi
 
-          if [ -z "${{ secrets.APPETIZE_API_TOKEN }}" ]; then
-            echo "::error::APPETIZE_API_TOKEN secret is not set in GitHub repository secrets!"
+          TOKEN="${{ secrets.APPETIZE_API_TOKEN }}"
+          if [ -z "$TOKEN" ]; then
+            echo "::error::APPETIZE_API_TOKEN secret is empty or not found in GitHub repository secrets!"
             exit 1
           fi
 
-          # Upload APK using Appetize.io API v2
-          RESPONSE=$(curl --silent --show-error --fail \
-            --request POST 'https://api.appetize.io/v2/apps' \
-            --header "Authorization: Bearer ${{ secrets.APPETIZE_API_TOKEN }}" \
+          echo "Uploading $APK_PATH to Appetize.io..."
+
+          # Upload APK using Appetize.io API v1
+          HTTP_RESPONSE=$(curl --silent --show-error \
+            --write-out "\nHTTP_STATUS:%{http_code}" \
+            --request POST "https://api.appetize.io/v1/apps?token=${TOKEN}" \
             --form "file=@${APK_PATH}" \
             --form "platform=android")
 
-          echo "Appetize Response: $RESPONSE"
+          RESPONSE_BODY=$(echo "$HTTP_RESPONSE" | sed -e 's/HTTP_STATUS\:.*//g')
+          HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tr -d '\n' | sed -e 's/.*HTTP_STATUS://')
 
-          # Extract public key / app URL from response
-          PUBLIC_KEY=$(echo "$RESPONSE" | grep -o '"publicKey":"[^"]*' | cut -d'"' -f4)
-          APP_URL="https://appetize.io/app/${PUBLIC_KEY}"
+          echo "Appetize HTTP Status Code: $HTTP_STATUS"
+          echo "Appetize Response Body: $RESPONSE_BODY"
+
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "::error::Appetize upload failed with HTTP status $HTTP_STATUS: $RESPONSE_BODY"
+            exit 1
+          fi
+
+          # Extract public key and app URL using python3
+          PUBLIC_KEY=$(python3 -c "import json, sys; res = json.loads(sys.stdin.read()); print(res.get('publicKey', ''))" <<< "$RESPONSE_BODY")
+          APP_URL=$(python3 -c "import json, sys; res = json.loads(sys.stdin.read()); print(res.get('publicURL', ''))" <<< "$RESPONSE_BODY")
+
+          if [ -z "$APP_URL" ] && [ -n "$PUBLIC_KEY" ]; then
+            APP_URL="https://appetize.io/app/${PUBLIC_KEY}"
+          fi
 
           if [ -z "$PUBLIC_KEY" ]; then
-            echo "::error::Failed to parse publicKey from Appetize response."
+            echo "::error::Failed to obtain publicKey from Appetize response."
             exit 1
           fi
 
