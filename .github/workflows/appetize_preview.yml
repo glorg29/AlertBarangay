@@ -49,9 +49,10 @@ jobs:
 
           echo "Uploading $APK_PATH to Appetize.io..."
 
-          # Upload APK using Appetize.io API v1
+          # Upload APK using Appetize.io API (supports basic auth & token param)
           HTTP_RESPONSE=$(curl --silent --show-error \
             --write-out "\nHTTP_STATUS:%{http_code}" \
+            --user "${TOKEN}:" \
             --request POST "https://api.appetize.io/v1/apps?token=${TOKEN}" \
             --form "file=@${APK_PATH}" \
             --form "platform=android")
