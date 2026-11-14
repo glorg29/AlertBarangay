@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="ab_navy">#152554</color>
+    <color name="ab_muted">#64718A</color>
+    <color name="ab_red">#DF263B</color>
+    <color name="ab_background">#F3F6FA</color>
+    <color name="ab_surface">#FFFFFF</color>
+    <color name="ab_line">#E0E6EE</color>
+    <color name="ab_tint">#E9EEF8</color>
+    <color name="ab_sos_halo">#FAE6E9</color>
+    <color name="ab_sos_outer">#FBEDF0</color>
 </resources>

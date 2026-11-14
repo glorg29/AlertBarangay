@@ -1,8 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AlertBarangay" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.AlertBarangay" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/ab_navy</item>
+        <item name="colorOnPrimary">@color/ab_surface</item>
+        <item name="colorSecondary">@color/ab_red</item>
+        <item name="colorSurface">@color/ab_surface</item>
+        <item name="colorOnSurface">@color/ab_navy</item>
+        <item name="android:colorBackground">@color/ab_background</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
     </style>
 
     <style name="Theme.AlertBarangay" parent="Base.Theme.AlertBarangay" />

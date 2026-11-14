@@ -1,3 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AlertBarangay</string>
+    <string name="brand_name">Alert<font color="#DF263B">Barangay</font></string>
+    <string name="demo_banner">FRONTEND DEMO · NO REAL ALERTS</string>
+    <string name="screen_eyebrow">RESIDENT / EMERGENCY ASSISTANCE</string>
+    <string name="report_heading">Need help right now?</string>
+    <string name="report_intro">Send an emergency alert to your barangay.</string>
+    <string name="sos">SOS</string>
+    <string name="sos_accessibility">SOS. Create a demo emergency report. No real alert will be sent.</string>
+    <string name="sos_action">Tap to create a demo alert</string>
+    <string name="sos_explanation">No form needed. Your report can include your available location.</string>
+    <string name="sample_location">La Salle, Bacolod City</string>
+    <string name="sample_location_caption">Sample location · GPS is not connected</string>
+    <string name="detailed_section">FOR OTHER REPORTS</string>
+    <string name="detailed_action">Create a detailed report</string>
+    <string name="detailed_hint">Add an emergency type, photo, or description.</string>
+    <string name="report_tab">Report</string>
+    <string name="track_tab">Track</string>
+    <string name="demo_created_title">Demo report created</string>
+    <string name="demo_existing_title">Your demo SOS is already created</string>
+    <string name="demo_report_body">Report ID: %1$s\nType: SOS emergency — not specified\nLocation: %2$s\n\nSaved in memory only. No report has been sent to barangay staff.</string>
+    <string name="demo_track_title">Track preview</string>
+    <string name="demo_empty_track">No demo reports yet. Create one using SOS. The full Track screen will be built separately.</string>
+    <string name="demo_track_body">Report %1$s\nStatus: Local demo only — not sent\n\nThe full report list and status timeline will be built separately.</string>
+    <string name="demo_detailed_title">Detailed Report preview</string>
+    <string name="demo_detailed_body">This will open Screen 2, with emergency type, optional photo, and optional details. For this first step, only the Report screen is implemented.</string>
+    <string name="close">Close</string>
 </resources>
