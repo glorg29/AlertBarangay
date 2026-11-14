@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="<  Back to Report"
+            android:text="&lt; Back to Report"
             android:textFontWeight="1000"
             android:textAllCaps="false"
             android:textColor="@color/ab_navy" />
