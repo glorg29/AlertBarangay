@@ -70,24 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.nav_track) {
-                String message;
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        TrackReportsActivity.class
+                );
 
-                if (demoReportId == null) {
-                    message = getString(R.string.demo_empty_track);
-                } else {
-                    message = getString(
-                            R.string.demo_track_body,
-                            demoReportId
-                    );
-                }
-
-                showPreview(R.string.demo_track_title, message);
-
+                startActivity(intent);
                 return false;
             }
 
             findViewById(R.id.report_scroll).scrollTo(0, 0);
-
             return true;
         });
 
@@ -99,23 +91,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createDemoReport() {
-        boolean alreadyCreated = demoReportId != null;
-
-        if (!alreadyCreated) {
-            demoReportId = "DEMO-" + System.currentTimeMillis();
+        if (demoReportId == null) {
+            demoReportId = ReportIdGenerator.nextId(this);
         }
 
-        int title = alreadyCreated
-                ? R.string.demo_existing_title
-                : R.string.demo_created_title;
-
-        String message = getString(
-                R.string.demo_report_body,
-                demoReportId,
-                getString(R.string.sample_location)
+        Intent intent = new Intent(
+                MainActivity.this,
+                ReportConfirmationActivity.class
         );
 
-        showPreview(title, message);
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_REPORT_ID,
+                demoReportId
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_EMERGENCY_TYPE,
+                "SOS emergency — not specified"
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_LOCATION,
+                "La Salle, Bacolod City"
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_DETAILS,
+                "No description provided."
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_HAS_PHOTO,
+                false
+        );
+
+        ReportStore.saveReport(
+                this,
+                new Report(
+                        demoReportId,
+                        "SOS emergency — not specified",
+                        "La Salle, Bacolod City",
+                        "No description provided.",
+                        false
+                )
+        );
+
+        startActivity(intent);
     }
 
     private void showPreview(int title, String message) {

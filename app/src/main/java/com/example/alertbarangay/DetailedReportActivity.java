@@ -21,6 +21,8 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
+import android.content.Intent;
+
 public class DetailedReportActivity extends AppCompatActivity {
 
     private static final String STATE_PHOTO_URI = "photo_uri";
@@ -178,30 +180,51 @@ public class DetailedReportActivity extends AppCompatActivity {
                 ? ""
                 : detailsInput.getText().toString().trim();
 
-        String reportId = "DEMO-" + System.currentTimeMillis();
+        String reportId = ReportIdGenerator.nextId(this);
 
-        String description = details.isEmpty()
-                ? "No description provided."
-                : details;
+        Intent intent = new Intent(
+                DetailedReportActivity.this,
+                ReportConfirmationActivity.class
+        );
 
-        String photo = selectedPhotoUri == null
-                ? "No photo selected"
-                : "Selected locally · Not uploaded";
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_REPORT_ID,
+                reportId
+        );
 
-        String message =
-                "Report ID: " + reportId
-                        + "\n\nEmergency type: " + emergencyType
-                        + "\nLocation: La Salle, Bacolod City (sample)"
-                        + "\nPhoto: " + photo
-                        + "\n\nDetails:\n" + description
-                        + "\n\nDemo only. No report has been sent "
-                        + "to barangay staff.";
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_EMERGENCY_TYPE,
+                emergencyType
+        );
 
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("Demo report created")
-                .setMessage(message)
-                .setPositiveButton("Close", null)
-                .show();
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_LOCATION,
+                "La Salle, Bacolod City"
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_DETAILS,
+                details
+        );
+
+        intent.putExtra(
+                ReportConfirmationActivity.EXTRA_HAS_PHOTO,
+                selectedPhotoUri != null
+        );
+
+        ReportStore.saveReport(
+                this,
+                new Report(
+                        reportId,
+                        emergencyType,
+                        "La Salle, Bacolod City",
+                        details,
+                        selectedPhotoUri != null
+                )
+        );
+
+        startActivity(intent);
+        finish();
     }
 
     @Override

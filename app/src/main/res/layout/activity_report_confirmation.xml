@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_confirmation_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ab_background"
+    android:fillViewport="true"
+    tools:context=".ReportConfirmationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/confirmation_check_background"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:text="✓"
+            android:textColor="#14785B"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="Report created"
+            android:textColor="@color/ab_navy"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Your report is ready to review."
+            android:textColor="@color/ab_muted"
+            android:textSize="14sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/ab_surface"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/ab_line"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Report ID"
+                    android:textColor="@color/ab_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/confirmation_report_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="@color/ab_navy"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="R-001" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/ab_line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Emergency type"
+                    android:textColor="@color/ab_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/confirmation_emergency_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="@color/ab_navy"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="🔥 Fire" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/ab_line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Location"
+                    android:textColor="@color/ab_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/confirmation_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="@color/ab_navy"
+                    android:textSize="16sp"
+                    tools:text="La Salle, Bacolod City" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/ab_line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Details"
+                    android:textColor="@color/ab_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/confirmation_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="@color/ab_navy"
+                    android:textSize="14sp"
+                    tools:text="No description provided." />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/ab_line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Photo"
+                    android:textColor="@color/ab_muted"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/confirmation_photo_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="@color/ab_navy"
+                    android:textSize="14sp"
+                    tools:text="No photo selected" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_track_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:minHeight="56dp"
+            android:text="Track Report"
+            android:textAllCaps="false"
+            android:textColor="@color/ab_surface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/ab_navy"
+            app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back_to_report"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minHeight="56dp"
+            android:text="Back to Report"
+            android:textAllCaps="false"
+            android:textColor="@color/ab_navy"
+            android:textSize="16sp"
+            app:backgroundTint="@color/ab_surface"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/ab_line" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
